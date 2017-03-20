@@ -2,7 +2,8 @@ import requests
 from lxml import html
 import os
 import sys
-from tqdm import tqdm
+
+
 class Scraper:
 
     def __init__(self):
@@ -11,13 +12,12 @@ class Scraper:
         self.html = None
         self.path = None
         self.image_scrape = None
-        self.max_threads = 3
+        self.max_threads = 1
         self.links = []
         self.max = 100000
         self.total = 0
         self.done = 0
         self.injected = False
-        self.bar = tqdm(bar_format='{percentage:3.0f}%|{bar}|{n_fmt}/{total_fmt} ETA {remaining}')
 
     def get_source(self):
         try:
@@ -52,7 +52,7 @@ class Scraper:
             dload = requests.get(url, stream=True)
         except requests.exceptions.ConnectionError:
             print "Connection error"
-            sys.exit(0)
+            sys.exit()
         filename = url.split('/')[-1]
         filename = requests.utils.unquote(filename)
         with open(os.path.join(self.path, filename), 'wb') as f:
@@ -63,6 +63,6 @@ class Scraper:
         return index
 
     def checkIfImage(self):
-        l = ('jpg', 'jpeg', 'png', 'gif', 'svg')
-        if self.ext.endswith(l):
+        image_extensions = ('jpg', 'jpeg', 'png', 'gif', 'svg')
+        if self.ext.endswith(image_extensions):
             self.image_scrape = True

@@ -11,18 +11,18 @@ except ImportError:
     from distutils.core import setup
 import sys
 
-req_list = ['tqdm', 'requests', 'lxml']
+req_list = ['tqdm', 'requests', 'lxml', 'futures']
 
 extra = {}
 if sys.version_info >= (3,):
     extra['use_2to3'] = True
 
 setup(
-    name='extscraper',
+    name='extscrape',
 
-    packages=['extscraper'],
+    packages=['extscrape'],
 
-    version='1.0.0',
+    version='1.0.1',
 
     description='Scrapes files from the web'
     ' with specified extensions.',
@@ -34,11 +34,11 @@ setup(
     install_requires=req_list,
 
     entry_points={
-        'console_scripts': ['extscraper = extscraper:'
+        'console_scripts': ['extscrape = extscrape:'
                             'main']
     },
 
-    url='',
+    url='https://github.com/parakalan/extscrape',
 
     keywords=['scrape', 'extension'],
 
