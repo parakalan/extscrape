@@ -16,6 +16,9 @@ def main():
 
 
 def console():
+    """
+        Handle console operations.
+    """
     print "extscrape"
     print "*********************"
     print "\n"
