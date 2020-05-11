@@ -7,6 +7,9 @@ import sys
 class Scraper:
 
     def __init__(self):
+        """
+            Initialize class variables.
+        """
         self.url = None
         self.ext = None
         self.html = None
@@ -20,6 +23,9 @@ class Scraper:
         self.injected = False
 
     def get_source(self):
+        """
+            Retrieve html source of given link.
+        """
         try:
             r = requests.get(self.url)
         except requests.exceptions.MissingSchema:
@@ -30,6 +36,9 @@ class Scraper:
         self.html = r.content
 
     def scan_links(self):
+        """
+            Scan list of links from html source.
+        """
         tree = html.fromstring(self.html)
         link_list = tree.xpath('//a//@href')
         if self.image_scrape:
@@ -43,6 +52,9 @@ class Scraper:
         print "Found :", self.total
 
     def download(self, index):
+        """
+            Download file corresponding to index.
+        """
         url = self.links[index]
         try:
             dload = requests.get(url, stream=True)
@@ -63,6 +75,9 @@ class Scraper:
         return index
 
     def checkIfImage(self):
+        """
+            Check if specified extension corresponds to an image.
+        """
         image_extensions = ('jpg', 'jpeg', 'png', 'gif', 'svg')
         if self.ext.endswith(image_extensions):
             self.image_scrape = True
