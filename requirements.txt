@@ -1,4 +1,4 @@
 futures==3.0.5
-lxml==4.6.2
+lxml==4.9.1
 requests==2.20.0
 tqdm==4.11.2
